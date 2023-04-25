@@ -1,17 +1,18 @@
-name: Python Compilation
+name: Python Script
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  compile:
+  run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Compile Python program
-        run: |
-          output=$(python -m py_compile calc.py 2>&1)
-          echo "$output"
+      - name: Run Python program
+        run: python calc.py > output.txt
+
+      - name: Show output
+        run: cat output.txt
